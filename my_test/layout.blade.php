@@ -73,33 +73,19 @@
     </div>
 </div>
 
-@if(isset($_POST['not_allow']) && $_POST['not_allow']==true)
+    @if(isset($_POST['not_allow']) && $_POST['not_allow']==true)
     <script type="text/javascript">
         window.location ='{{url("restriction")}}';//here double curly bracket
     </script>
     @endif
 
     @if(isset($_POST['msisdn']) && $_POST['msisdn']!='')
-    {{-- $a=Request::url();--}}
-    {{--@if(Request::url() === '/darun-tv/more-video')
-    @endif--}}
-
-         {{--=====First time used condi--}}
-        {{--@if($_POST['show_msisdn']!=true)
-        @include('modals.subscription',['msisdn' =>$_POST['msisdn']])--}}
-        {{--end=======--}}
-
-         {{--=====new my condi now--}}
-        @if(Request::url() === url('view-video') || Request::url() === url('/'))
-            {{--{{  dd(Request::url()) }}--}}
-            @include('modals.final_confirmation')
-        @else
+        
+        @if($_POST['show_msisdn']!=true && (Request::url() === url('view-video') || Request::url() === url('/')))
+            @include('modals.subscription',['msisdn' =>$_POST['msisdn']])
         @endif
-       {{--====end--}}
-    @else
-        {{-- Ratna: Add a logic to show aro video if user use wifi. but in home page first it will show fire jan modal.
-        then if a user goes to view-video pages then it will redirect to home with fire jan modal. this block will
-        works only if mobile no not found. --}}
+
+    @else       
         {{-- $a=Request::url();--}}
         @if(Request::url() === url('view-video') || Request::url() === url('/'))
             {{--{{  dd(Request::url()) }}--}}
