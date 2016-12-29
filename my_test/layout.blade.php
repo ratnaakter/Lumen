@@ -80,27 +80,24 @@
     @endif
 
     @if(isset($_POST['msisdn']) && $_POST['msisdn']!='')
-        
         @if($_POST['show_msisdn']!=true && (Request::url() === url('view-video') || Request::url() === url('/')))
-            @include('modals.subscription',['msisdn' =>$_POST['msisdn']])
+        @include('modals.subscription',['msisdn' =>$_POST['msisdn']])
         @endif
-
-    @else       
-        {{-- $a=Request::url();--}}
+    @else
+    {{-- $a=Request::url();--}}
         @if(Request::url() === url('view-video') || Request::url() === url('/'))
-            {{--{{  dd(Request::url()) }}--}}
-            @include('modals.back_modal')
+    {{--{{  dd(Request::url()) }}--}}
+        @include('modals.back_modal')
         @endif
-
     @endif
-
-            <!--  confirm modal-->
+    <!--  confirm modal-->
     <!-- header start here -->
     <div class="Wrap" id="Wrapid" style="display:block">
         <div class="header">
             <div class="headerlog" >
                 <img src="{{asset('assets/images/222.jpg')}}" class="headerimg" style="width:100%;"/>
-                <img src="{{asset('assets/images/search.png')}}"  class="searchicone" style="width:10%;position:absolute;right:7px;top:15px" />
+                <img src="{{asset('assets/images/search.png')}}"  class="searchicone" style="width:10%;
+                position:absolute;right:7px;top:15px;cursor:pointer;" />
             </div>
             <div class="manu">
                 <div id='cssmenu'  style="display:none">
@@ -113,19 +110,23 @@
                         <li class='active'><a href="{{url('/more-video?content_type=ফিটনেস')}}"><span><i><img src="{{asset('assets/images/fitness.png')}}" class="" style="width:30px;height:25px;" /> </i>ফিটনেস</span></a></li>
                         <li class='active'><a href="{{url('/more-video?content_type=কমেডি')}}"><span><i><img src="{{asset('assets/images/comedy.png')}}" class="" style="width:30px;height:25px;" /> </i>কমেডি</span></a></li>
                         <li class='active'><a href="{{url('/more-video?content_type=প্রিমিয়াম')}}"><span><i><img src="{{asset('assets/images/premium-video.png')}}" class="" style="width:30px;height:25px;" /> </i>প্রিমিয়াম ভিডিও</span></a></li>
+                        @if($_POST['show_msisdn']==true) {{--<<==to stop show ফেভারিট when using wifi--}}
                         <li class='active'><a href="{{url('/more-video?content_type=ফেভারিট')}}"><span><i><img src="{{asset('assets/images/favourite.png')}}" class="" style="width:30px;height:25px;" /> </i>ফেভারিট</span></a></li>
-                        <li class='active'><a href="{{url('/more-video?content_type=লাইব্রেরি')}}"><span><i><img src="{{asset('assets/images/library.png')}}" class="" style="width:30px;height:25px;" /> </i>লাইব্রেরি</span></a></li>
+                        @endif
+                        {{--<li class='active'><a href="{{url('/more-video?content_type=লাইব্রেরি')}}"><span><i><img src="{{asset('assets/images/library.png')}}" class="" style="width:30px;height:25px;" /> </i>লাইব্রেরি</span></a></li>--}}
                     </ul>
                 </div>
             </div>
-            <form type="post" action="{{url('search-item')}}">
-                <div class="input-group" style="display:none">
-                    <input name="HeaderControltxtserach" type="text" id="HeaderControl_txtserach" class="form-control" />
-        <span class="input-group-btn">
-          <input type="submit" name="HeaderControl$btnsearch" value="Search" id="HeaderControl_btnsearch" class="btn btn-danger " />
-        </span>
-                </div>
-            </form>
+
+                <form type="post" action="{{url('search-item')}}">
+                    <div class="input-group" style="display:none">
+                        <input name="HeaderControltxtserach" type="text" id="HeaderControl_txtserach" class="form-control" />
+                        <span class="input-group-btn">
+                          <input type="submit" name="HeaderControl$btnsearch" value="Search" id="HeaderControl_btnsearch" class="btn btn-danger " />
+                        </span>
+                    </div>
+                </form>
+
         </div>
         <div style="visibility: hidden" class="msisdn"></div>
         <div>
@@ -276,23 +277,30 @@
             var value = 0;
             $("#cssmenu").hide();
             $(".searchicone").click(function () {
-                value = 1;
+                if($("#cssmenu").is(":visible")) {
+                    $("#cssmenu").hide();
+                }
+                $(".input-group").slideToggle();
+                /*value = 1;
                 if (value == "1") {
                     $(".input-group").toggle();
                 }
+
                 else {
                     $("#cssmenu").animate({
                         width: "toggle"
                     });
-                }
+                }*/
             });
-            if (value == "0") {
+            //if (value == "0") {
                 $(".headerimg").click(function () {
+                    //$(".input-group").toggle();
+                    $(".input-group").hide();
                     $("#cssmenu").animate({
                         width: "toggle"
                     });
                 });
-            }
+           // }
 			
 //===========================search========================================
             $('.HeaderControl_btnsearch').click(function(){
@@ -309,9 +317,9 @@
                 });
                 console.log("hello");
             });
-//=====================================================================================
-//===============================video view count(Dakhun)=============================================
-//=====================================================================================
+//=====================================================================================================
+//===============================video view count(Dakhun)==============================================
+//=====================================================================================================
             $('.count_dekhun').click(function(){
                 var code_content=$(".content_code").html();
                 var cat_code=$(".cat_code").html();
@@ -329,7 +337,7 @@
                     },
                     success: function (data) {
                         if($.trim(data)=='-1'){
-                            $('video').trigger('pause');
+                            //$('video').trigger('pause');
                             //window.location.reload();
                             window.location = '{{ url("/") }}'; // Ratna: if -1 found redirect to home
                             //$("#myModalAgree").modal('show');
@@ -345,7 +353,7 @@
 //********************* Agree Button show on home page and set new environment starts *********************//
             var viewAgreeButtonStatus = '';
             viewAgreeButtonStatus = '{{ session::get('viewAgreeButtonStatus') }}';
-//            console.log('viewAgreeButtonStatus: '+ viewAgreeButtonStatus);
+//          console.log('viewAgreeButtonStatus: '+ viewAgreeButtonStatus);
             if(viewAgreeButtonStatus == '-1'){
                 $("#myModalAgree").modal('show');
             }
@@ -357,7 +365,7 @@
                     type: 'GET',
                     cache : false,
                     success: function (data) {
-//                        console.log(data);
+//                  console.log(data);
                     }
                 });
             });
@@ -572,12 +580,11 @@
                 }
             });
         }
-        // Ratna: Here remove some unused code like slick slider and its associated function which is not used now.
-        // if any problem occurs then get the resource from darunctv_copy  folder from htdocs
+        //===================Aro video Load button ajax and this will load 6 video in page when click
         var track_page2 = 10;
         $(".data-aro").click(function (e) { //user clicks on button
             //console.log($('.vdtitle').html());
-            track_page2 =track_page2+2;
+            track_page2 =track_page2+6;
             var x=$(this).data("id");
             //var x=$('.demo-append').html();
             //console.log(x);
@@ -591,7 +598,7 @@
                 success: function (data) {
                     //$('.aro-arrow').hide();
                     $('#demo-append'+x).html(data);
-                    //console.log(data);
+                    console.log(data);
                 }
             });
         });
