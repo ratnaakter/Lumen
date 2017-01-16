@@ -1,0 +1,95 @@
+<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="MoreNewGame.aspx.cs" Inherits="HC.UI.Pages.MoreNewGame" %>
+<%@ Register Src="../UserControls/Header.ascx" TagName="Header" TagPrefix="uc1" %>
+<%@ Register Src="../UserControls/SubFooter.ascx" TagName="SubFooter" TagPrefix="uc5" %>
+<%@ Register Src="../UserControls/Footer.ascx" TagName="Footer" TagPrefix="uc6" %>
+<%@ Register Src="../UserControls/MoreTopGames.ascx" TagName="MoreTopGames" TagPrefix="uc2" %>
+<%@ Register Src="../UserControls/OtherLinks.ascx" TagName="OtherLinks" TagPrefix="uc2" %>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head id="Head1" runat="server">
+    <title>Robi Play: More Top Games</title>
+    <meta name="viewport" content="width=device-width, height=device-height, user-scalable=yes" />
+    <link href="../StyleSheet/StyleSheet.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+    <form id="frmMoreTopGames" runat="server">
+        <table cellpadding="0" cellspacing="0" class="TABLE">
+            <tr>
+                <td align="left" valign="top">
+                    <uc1:Header ID="HeaderControl" runat="server" />
+                </td>
+            </tr>
+        </table>
+        <table cellpadding="0" cellspacing="0" class="TABLE">
+            <tr>
+                <td align="left" valign="top">
+                    <%--<uc2:MoreTopGames ID="MoreTopGames1" runat="server" />--%>
+                    <table id="dataListRelatedvideo" cellspacing="0" border="0" style="width: 100%; border-collapse: collapse;">
+                        <tr>
+                            <td>
+                                <div class="robititle">
+                                    <div class="robititletext">
+                                        <span>Robiplay New Games</span>
+                                    </div>
+
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="width: 49%">
+                                <div class="preview" style="width: 98%">
+                                    <a id="" class="imgResizeTest" href="" oncontextmenu="return false">
+                                        <img src="../Images/Ui_img/Chess.jpg" style="border-width: 0px; width: 49%; margin-bottom: 6px;"></a>
+                                    <span class="slide-title"></span>
+                                    <a id="" class="imgResizeTest" href="" oncontextmenu="return false">
+                                        <img src="../Images/Ui_img/Cricket_Fever.jpg" style="border-width: 0px; width: 49%; margin-bottom: 6px;"></a>
+                                    <span class="slide-title"></span>
+                                    <a id="" class="imgResizeTest" href="" oncontextmenu="return false">
+                                        <img src="../Images/Ui_img/Chess.jpg" style="border-width: 0px; width: 49%; margin-bottom: 6px;"></a>
+                                    <span class="slide-title"></span>
+                                    <a id="" class="imgResizeTest" href="" oncontextmenu="return false">
+                                        <img src="../Images/Ui_img/Pro_Tennis_2014.jpg" style="border-width: 0px; width: 49%; margin-bottom: 6px;"></a>
+                                    <span class="slide-title"></span>
+                                    <a id="" class="imgResizeTest" href="" oncontextmenu="return false">
+                                        <img src="../Images/Ui_img/Extreme_Rally_3D.jpg" style="border-width: 0px; width: 49%; margin-bottom: 6px;"></a>
+                                    <span class="slide-title"></span>
+                                    <a id="" class="imgResizeTest" href="" oncontextmenu="return false">
+                                        <img src="../Images/Ui_img/Pro_Tennis_2014.jpg" style="border-width: 0px; width: 49%; margin-bottom: 6px;"></a>
+                                    <span class="slide-title"></span>
+                                     <a id="" class="imgResizeTest" href="" oncontextmenu="return false">
+                                        <img src="../Images/Ui_img/Chess.jpg" style="border-width: 0px; width: 49%; margin-bottom: 6px;"></a>
+                                    <span class="slide-title"></span>
+                                    <a id="" class="imgResizeTest" href="" oncontextmenu="return false">
+                                        <img src="../Images/Ui_img/Cricket_Fever.jpg" style="border-width: 0px; width: 49%; margin-bottom: 6px;"></a>
+                                    <span class="slide-title"></span>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <button type="button" class="btn footer_btn" >More..</button></td>
+                            
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+            <tr> 
+                <td>&nbsp</td>
+            </tr>
+            <tr>
+                <td>&nbsp</td>
+            </tr>
+            <tr>
+                <td>&nbsp</td>
+            </tr>
+            <tr>
+                <td align="left" valign="top">
+                    <uc6:Footer ID="FooterControl" runat="server" />
+                </td>
+            </tr>
+        </table>
+    </form>
+</body>
+</html>
+
+
