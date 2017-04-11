@@ -15,6 +15,9 @@ if($subcs_id!='')
     //exit;
     $deactivate_user = $clients->SoftDeactivateUser(['subscriptionId'=>"$subcs_id",'MSISDN'=>$mobileNo,
         'SubscriptionType'=>$subcs_type]);
+    echo 1;
+} else {
+	echo 0;
 }
 // print_r($deactivate_user ) ;exit;
 

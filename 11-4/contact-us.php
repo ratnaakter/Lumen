@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 include ('common/header1.php');
 
 function GetMSISDN() // Find out the MSISDN Number of GrameenPhone Mobile
@@ -194,6 +194,11 @@ if($subcs_id!='')
     $('#contact').addClass('active');
 </script>
 
+<div class="row">
+    <div class="span12" id = "unsubscribeMsg" style="display: none">
+    </div>
+</div>
+
 <div class="container">
     <div class="row">
         <div class="span6">
@@ -274,20 +279,27 @@ if($subcs_id!='')
 <script>
     $(document).ready(function() {
 
+    	//$('#unsubscribeMsg').hide();
+
         $('.toggle label').click(function(){
             $(this).children('span').addClass('input-checked');
             $(this).parent('.toggle').siblings('.toggle').children('label').children('span').removeClass('input-checked');
         });
-
-
 
     });
 
     function unsubscribeUser(){
         
         $.get( "deactivate_user.php", { subscriptionId: '<?php echo $subcs_id;?>', MSISDN: '<?php echo $mobileNo;?>', SubscriptionType: '<?php echo $subcs_type;?>' } ).done(function( data ) {
-            alert( 'Successfully unsubscribe from kaspersky service' );
-            location.reload();
+            /*alert( 'Successfully unsubscribe from kaspersky service' );
+            location.reload();*/
+            if(data == 1){
+            	$('#unsubscribeMsg').text('Successfully unsubscribe from kaspersky service').show();
+            } else if(data == 1){
+            	$('#unsubscribeMsg').text('Subscription id not found').show();
+            } else {
+            	$('#unsubscribeMsg').hide();
+            }
         });        
     }
 </script>
