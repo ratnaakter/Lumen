@@ -284,15 +284,11 @@ if($subcs_id!='')
     });
 
     function unsubscribeUser(){
-        var status = confirm('Are you sure you want to Unsubscribe from kaspersky?');
-        if(status ==  true){
-            $.get( "deactivate_user.php", { subscriptionId: '<?php echo $subcs_id;?>', MSISDN: '<?php echo $mobileNo;?>', SubscriptionType: '<?php echo $subcs_type;?>' } ).done(function( data ) {
-                alert( 'Successfully unsubscribe from kaspersky service' );
-                location.reload();
-            });
-        } else {
-            return false;
-        }
+        
+        $.get( "deactivate_user.php", { subscriptionId: '<?php echo $subcs_id;?>', MSISDN: '<?php echo $mobileNo;?>', SubscriptionType: '<?php echo $subcs_type;?>' } ).done(function( data ) {
+            alert( 'Successfully unsubscribe from kaspersky service' );
+            location.reload();
+        });        
     }
 </script>
 <script src="js/plugins.js"></script>
