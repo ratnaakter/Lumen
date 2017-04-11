@@ -190,6 +190,16 @@ if($subcs_id!='')
 }*/
 //print_r($deactivate_user ) ;exit;
 ?>
+<style>
+    #unsubscribeMsg{
+        background: rgba(26, 188, 156,1.0);
+        color: #fff;
+        font-size: 13px;
+        text-align: left;
+        padding: 5px 0px;
+        text-indent: 10px;
+    }
+</style>
 <script xmlns="http://www.w3.org/1999/html">
     $('#contact').addClass('active');
 </script>
@@ -293,9 +303,10 @@ if($subcs_id!='')
         $.get( "deactivate_user.php", { subscriptionId: '<?php echo $subcs_id;?>', MSISDN: '<?php echo $mobileNo;?>', SubscriptionType: '<?php echo $subcs_type;?>' } ).done(function( data ) {
             /*alert( 'Successfully unsubscribe from kaspersky service' );
             location.reload();*/
+            alert(data);
             if(data == 1){
             	$('#unsubscribeMsg').text('Successfully unsubscribe from kaspersky service').show();
-            } else if(data == 1){
+            } else if(data == 0){
             	$('#unsubscribeMsg').text('Subscription id not found').show();
             } else {
             	$('#unsubscribeMsg').hide();
