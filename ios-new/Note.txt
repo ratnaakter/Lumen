@@ -1,1 +1,0 @@
-Controller e pushSticker() function ta tmr locally jeta ache seta use krte hbe
